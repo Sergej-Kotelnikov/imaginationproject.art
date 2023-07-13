@@ -1,0 +1,193 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --gutter: 30px;
+    --side-small: 26;
+    --side-big: 36;
+    --depth: 4000px;
+    --transition: .75s cubic-bezier(.75, .5, 0, 1);
+}
+
+  /* Скрываем Scrollbar */
+body {
+	scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar { 
+	display: none; /* Safari and Chrome */
+}
+
+
+
+
+
+body {
+    background-color: black;
+    color: #fff;
+    font-size: calc(var(--index) * 2);
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.75;
+    height: var(--depth);
+    font-weight: 300;
+}
+.container-galery {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    perspective: 1500px;
+}
+.galery {
+    transform-style: preserve-3d;
+    height: 100%;
+}
+.frame {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition) opacity .75s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+.galery-title {
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: calc(var(--index) * 5);
+    width: min-content;
+    line-height: 1;
+}
+
+.frame__media {
+    position: relative;
+    width: calc(var(--index) * var(--side-small));
+    height: calc(var(--index) * var(--side-big));
+    background-position: center;
+    background-size: cover;
+}
+.frame__media-left {
+    right: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+.frame__media-right {
+    left: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+.frame_bg {
+    background-color: rgb(0 0 0 / .87);
+}
+video.frame__media {
+    width: calc(var(--index) * var(--side-big));
+    height: calc(var(--index) * var(--side-small));
+}
+video.frame__media-right {
+    left: calc(var(--side-big) / 2 * var(--index) + var(--gutter)); 
+}
+video.frame__media-left {
+    right: calc(var(--side-big) / 2 * var(--index) + var(--gutter)); 
+}
+
+.width-img {
+    width: calc(var(--index) * var(--side-big));
+    height: calc(var(--index) * var(--side-small));
+}
+.width-img-right {
+    left: calc(var(--side-big) / 2 * var(--index) + var(--gutter)); 
+}
+.width-img-left {
+    right: calc(var(--side-big) / 2 * var(--index) + var(--gutter)); 
+}
+.text-right > * {
+    position: relative;
+    left: 50vw;
+}
+.text-left > * {
+    position: relative;
+    right: 45vw;
+}
+.frame h4 {
+    font-size: calc(var(--index) * 3);
+    font-weight: 100;
+}
+.frame p {
+    min-width: 30vw;
+    margin-top: 5vh;
+}
+
+
+/* Preloader*/
+
+.preloader {
+    height: 100%;
+    min-width: 100vw;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgb(0, 0, 0);
+  }
+  .load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.6rem;
+    color: white;
+  }
+  
+  .load::after,
+  .load::before{
+    content: "";
+    border-radius: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .load::before{
+    box-shadow: inset 20px 0 0 0 rgba(255, 0, 0, 0.6),
+    inset 0 20px 0 0 rgba(0, 4, 255, 0.6),
+    inset -20px 0 0 0 rgba(0, 247, 255, 0.6),
+    inset 0 -20px 0 0 rgba(255, 80, 0, 0.6);
+    animation: rotate-before 2000ms -0.5s linear infinite;
+  }
+  
+  .load::after {
+    box-shadow: inset 20px 0 0 0 rgba(255, 230, 0, 0.6),
+    inset 0 20px 0 0 rgba(255, 0, 221, 0.6),
+    inset -20px 0 0 0 rgba(255, 230, 0, 0.6),
+    inset 0 -20px 0 0 rgba(0, 247, 255, 0.6);
+    animation: rotate-after 2000ms -0.5s linear infinite;
+  }
+  
+  @keyframes rotate-after {
+    0% {
+        transform: rotate(0deg) scaleX(1) scaleY(1);
+    }
+    50% {
+        transform: rotate(180deg) scaleX(0.85) scaleY(0.95);
+    }
+    100% {
+        transform: rotate(360deg) scaleX(1) scaleY(1);
+    }
+  }
+  
+  @keyframes rotate-before {
+    0% {
+        transform: rotate(0deg) scaleX(1) scaleY(1);
+    }
+    50% {
+        transform: rotate(-180deg) scaleX(0.95) scaleY(0.85);
+    }
+    100% {
+        transform: rotate(-360deg) scaleX(1) scaleY(1);
+    }
+  }
